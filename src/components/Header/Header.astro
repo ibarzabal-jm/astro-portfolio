@@ -1,0 +1,104 @@
+---
+import ToggleTheme from "./ToggleTheme/ToggleTheme.astro";
+import DownloadCV from "./DownloadCV/DownloadCV.astro";
+import Hamburger from "./Hamburger/Hamburger.astro";
+import Sidebar from "./Sidebar/Sidebar.astro";
+
+const currentPath = Astro.url.pathname;
+
+const navItems = [
+  { href: "/", label: "Home" },
+  { href: "/experiences", label: "Experiences" },
+  { href: "/projects", label: "Projects" },
+  { href: "/contact", label: "Contact" },
+];
+---
+
+<header>
+  <div class="header-menu">
+    <a class="logo"> Juanma </a>
+
+    <div class="desktop-menu">
+      <nav>
+        {
+          navItems.map((item) => (
+            <a
+              href={item.href}
+              class={currentPath === item.href ? "active" : ""}
+            >
+              {item.label}
+            </a>
+          ))
+        }
+      </nav>
+      <hr />
+      <ToggleTheme />
+      <DownloadCV />
+    </div>
+
+    <Hamburger />
+  </div>
+
+  <Sidebar navItems={navItems} currentPath={currentPath} />
+</header>
+
+<style>
+  header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    background-color: var(--primary-50);
+    z-index: 1;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .header-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 80rem;
+    padding: 1rem;
+    z-index: 50;
+  }
+
+  a {
+    color: var(--primary-600);
+  }
+  .logo {
+    font-weight: bold;
+    color: var(--primary-900);
+  }
+
+  .desktop-menu {
+    display: none;
+  }
+
+  @media screen and (min-width: 768px) {
+    .desktop-menu {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .desktop-menu nav a {
+      margin-right: 1.5rem;
+      color: var(--primary-600);
+      text-decoration: none;
+      transition: color 0.3s ease-in-out;
+    }
+
+    .desktop-menu nav a:hover {
+      color: var(--primary-800);
+    }
+
+    .desktop-menu hr {
+      height: 30px;
+    }
+  }
+</style>
+
+<script src="./header.ts"></script>

@@ -1,0 +1,57 @@
+---
+import Github from "../components/Icons/Github.astro";
+import LinkedIn from "../components/Icons/LinkedIn.astro";
+import TimeLine from "../components/TimeLine/TimeLine.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Juanma Ibarzabal Portfolio">
+  <main>
+    <section>
+      <h1>Buenas, soy Juanma 👋</h1>
+      <p>
+        Soy un desarrollador web que disfruta creando cosas en la web. Me
+        encanta aprender cosas nuevas y compartir lo que sé con los demás.
+      </p>
+
+      <div class="social">
+        <a href="https://github.com/ibarzabal-jm">
+          <Github />
+        </a>
+        <a href="https://www.linkedin.com/in/juanma-ibarzabal/">
+          <LinkedIn />
+        </a>
+      </div>
+    </section>
+    <section>
+      <TimeLine />
+    </section>
+    <section>projects</section>
+    <section>contact</section>
+  </main>
+</Layout>
+
+<style>
+  main {
+    font-size: 20px;
+    line-height: 1.6;
+  }
+
+  section {
+    padding-block: 6rem;
+    padding-inline: 2rem;
+  }
+
+  section:nth-of-type(even) {
+    background-color: var(--primary-100);
+  }
+
+  section:nth-of-type(odd) {
+    background-color: var(--primary-200);
+  }
+
+  .social {
+    display: flex;
+    gap: 1rem;
+  }
+</style>

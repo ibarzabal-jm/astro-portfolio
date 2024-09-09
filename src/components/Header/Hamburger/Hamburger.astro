@@ -1,0 +1,23 @@
+---
+import "./Hamburger.css";
+---
+
+<button class="hamburger" aria-label="Menu">
+  <span class="line"></span>
+  <span class="line"></span>
+  <span class="line"></span>
+</button>
+
+<script>
+  const hamburger = document.querySelector(".hamburger");
+  const sidebar = document.querySelector(".sidebar");
+  const body = document.body;
+
+  if (hamburger && sidebar) {
+    hamburger.addEventListener("click", () => {
+      hamburger.classList.toggle("active");
+      sidebar.classList.toggle("active");
+      body.classList.toggle("no-scroll");
+    });
+  }
+</script>
