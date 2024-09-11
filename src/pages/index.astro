@@ -8,15 +8,20 @@ import SectionHeader from "../components/SectionHeader.astro";
 
 <Layout title="Juanma Ibarzabal Portfolio">
   <main>
-    <HomeHero />
+    <Container id="home">
+      <HomeHero />
+    </Container>
 
-    <TimeLine />
+    <Container id="experiences">
+      <SectionHeader title="Experiencias" />
+      <TimeLine />
+    </Container>
 
-    <Container>
+    <Container id="projects">
       <SectionHeader title="Proyectos" icon="mdi:rocket-launch-outline" />
     </Container>
 
-    <Container>
+    <Container id="contact">
       <SectionHeader title="Contacto" icon="mdi:email-outline" />
     </Container>
   </main>

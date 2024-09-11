@@ -1,54 +1,51 @@
 ---
 import { Icon } from "astro-icon/components";
-import Container from "../Container.astro";
 import "./HomeHero.css";
 ---
 
-<Container>
-  <div class="home-hero">
-    <div class="hero-image">
-      <img src="/juanma-foto.webp" alt="Juanma Ibarzabal" />
-      <div class="image-background"></div>
-    </div>
-    <div class="hero-content">
-      <h1>Hola, soy Juanma <span class="wave">👋</span></h1>
-      <p class="hero-description">
-        Soy un desarrollador web con <strong> más de 3 años de experiencia</strong> con React y Nextjs.
-        Me gusta crear cosas interesantes, con bonitas interfaces y funcionales.
+<div class="home-hero">
+  <div class="hero-image">
+    <img src="/juanma-foto.webp" alt="Juanma Ibarzabal" />
+    <div class="image-background"></div>
+  </div>
+  <div class="hero-content">
+    <h1>Hola, soy Juanma <span class="wave">👋</span></h1>
+    <p class="hero-description">
+      Soy un desarrollador web con <strong> más de 3 años de experiencia</strong> con React y Nextjs.
+      Me gusta crear cosas interesantes, con bonitas interfaces y funcionales.
+    </p>
+    <div class="location-availability">
+      <p class="location">
+        <Icon name="mdi:map-marker-outline" />
+        Buenos Aires, Argentina
       </p>
-      <div class="location-availability">
-        <p class="location">
-          <Icon name="mdi:map-marker-outline" />
-          Buenos Aires, Argentina
-        </p>
-        <p class="availability">
-          <span class="availability-dot-container">
-            <span class="availability-dot"></span>
-          </span>
-          Disponible para nuevos desafíos
-        </p>
-      </div>
-      <div class="social-links">
-        <a
-          href="https://github.com/ibarzabal-jm"
-          aria-label="GitHub"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Icon name="mdi:github" />
-        </a>
-        <a
-          href="https://www.linkedin.com/in/juanma-ibarzabal/"
-          aria-label="LinkedIn"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Icon name="mdi:linkedin" />
-        </a>
-        <a href="mailto:ibarzabalsallesjm@gmail.com" aria-label="Email">
-          <Icon name="mdi:email" />
-        </a>
-      </div>
+      <p class="availability">
+        <span class="availability-dot-container">
+          <span class="availability-dot"></span>
+        </span>
+        Disponible para nuevos desafíos
+      </p>
+    </div>
+    <div class="social-links">
+      <a
+        href="https://github.com/ibarzabal-jm"
+        aria-label="GitHub"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <Icon name="mdi:github" />
+      </a>
+      <a
+        href="https://www.linkedin.com/in/juanma-ibarzabal/"
+        aria-label="LinkedIn"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <Icon name="mdi:linkedin" />
+      </a>
+      <a href="mailto:ibarzabalsallesjm@gmail.com" aria-label="Email">
+        <Icon name="mdi:email" />
+      </a>
     </div>
   </div>
-</Container>
+</div>

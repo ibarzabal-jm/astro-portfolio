@@ -27,6 +27,7 @@ a {
 .logo {
   font-weight: bold;
   color: var(--primary-900);
+  text-decoration: none;
 }
 
 .desktop-menu {

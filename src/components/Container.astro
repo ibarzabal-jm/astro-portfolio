@@ -2,12 +2,13 @@
 interface Props {
   class?: string;
   fullWidth?: boolean;
+  id?: string;
 }
 
-const { class: className, fullWidth = false } = Astro.props;
+const { class: className, fullWidth = false, id } = Astro.props;
 ---
 
-<section class:list={["container-wrapper", className]}>
+<section id={id} class:list={["container-wrapper", className]}>
   <div class:list={["container-content", { "full-width": fullWidth }]}>
     <slot />
   </div>
