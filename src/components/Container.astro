@@ -1,0 +1,46 @@
+---
+interface Props {
+  class?: string;
+  fullWidth?: boolean;
+}
+
+const { class: className, fullWidth = false } = Astro.props;
+---
+
+<section class:list={['container-wrapper', className]}>
+  <div class:list={['container-content', { 'full-width': fullWidth }]}>
+    <slot />
+  </div>
+</section>
+
+<style>
+  .container-wrapper {
+    width: 100%;
+    padding: 6rem 0;
+  }
+
+  .container-wrapper:nth-of-type(even) {
+    background-color: var(--primary-100);
+  }
+
+  .container-wrapper:nth-of-type(odd) {
+    background-color: var(--primary-200);
+  }
+
+  .container-content {
+    max-width: 42rem;
+    padding: 0 1rem;
+    margin: 0 auto;
+  }
+
+  .container-content.full-width {
+    max-width: none;
+    width: 100%;
+  }
+
+  @media (min-width: 768px) {
+    .container-content:not(.full-width) {
+      max-width: 56rem;
+    }
+  }
+</style>

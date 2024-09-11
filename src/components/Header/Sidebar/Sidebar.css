@@ -34,7 +34,9 @@
   margin: 1rem;
   transform: translateY(25%);
   opacity: 0.1;
-  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  transition:
+    opacity 0.3s ease-in-out,
+    transform 0.3s ease-in-out;
 }
 
 .sidebar nav a:nth-child(1) {
@@ -61,7 +63,9 @@
 
   & button {
     transition-delay: 0.62s;
-    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    transition:
+      transform 0.3s ease-in-out,
+      opacity 0.3s ease-in-out;
     opacity: 0.1;
   }
 
@@ -92,7 +96,9 @@
 }
 
 .sidebar:not(.active) .sidebar-footer button {
-  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  transition:
+    transform 0.3s ease-in-out,
+    opacity 0.3s ease-in-out;
 }
 
 .sidebar:not(.active) .sidebar-footer button:nth-child(1) {

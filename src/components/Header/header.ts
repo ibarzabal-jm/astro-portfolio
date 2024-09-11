@@ -9,10 +9,8 @@ window.addEventListener("scroll", () => {
 
   if (header) {
     if (scrollTop > lastScrollTop && scrollTop > headerHeight) {
-      // Scroll hacia abajo
       header.style.transform = "translateY(-100%)";
     } else {
-      // Scroll hacia arriba
       header.style.transform = "translateY(0)";
     }
   }

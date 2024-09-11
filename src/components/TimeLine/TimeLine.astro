@@ -1,21 +1,56 @@
 ---
-const currentLocale = "es-AR";
+import { Icon } from "astro-icon/components";
+import "./TimeLine.css";
+
+const currentLocale = Astro.request.headers.get("accept-language")?.split(",")[0] || "es-AR";
+
+const formatDate = (date: Date) => {
+  return date.toLocaleDateString(currentLocale, {
+    month: "short",
+    year: "numeric",
+  });
+};
 
 const JOBS = [
   {
-    endDate: new Date().toLocaleDateString(currentLocale),
-    initDate: new Date("2022-01-02").toLocaleDateString(currentLocale),
+    endDate: formatDate(new Date()),
+    initDate: formatDate(new Date("2022-02-22")),
     company: "Inventa",
-    title: "Frontend Developer SWE1",
+    title: "Frontend Software Engineer",
     country: "Brasil",
+    location: "SP",
+    logo: "inventa",
+    description:
+      "Comencé ayudando en el desarrollo de un marketplace B2B, y luego tuve la oportunidad de liderar el frontend del backoffice de Order Management, donde gestionábamos el seguimiento de pedidos utilizando Next.js 12 y TypeScript.  Con el tiempo pasé de no saber una palabra de portugués a hablarlo diariamente con mis compañeros, contribuyendo de forma significativa en el lanzamiento de nuevas funcionalidades.",
+    detailLink: "/experiencia/inventa",
+    technologies: [
+      "Next.js",
+      "TypeScript",
+      "React",
+      "Jest",
+      "Zod",
+      "React Hook Form",
+      "React Query",
+      "React Testing Library",
+      "Jest",
+      "Zod",
+      "React Hook Form",
+      "Tanstack Query",
+    ],
   },
   {
-    initDate: new Date("2022-03-01").toLocaleDateString(currentLocale),
-    endDate: new Date("2022-01-02").toLocaleDateString(currentLocale),
+    initDate: formatDate(new Date("2021-04-05")),
+    endDate: formatDate(new Date("2022-02-02")),
     company: "Cruce",
     title: "Frontend Developer",
     url: "https://www.e-cruce.com/",
     country: "Argentina",
+    location: "Bs. As.",
+    logo: "cruce",
+    description:
+      "Mi primer trabajo en IT, donde fui el encargado del desarrollo, soporte y evolución de tiendas B2C principalemente, utilizando la plataforma Vtex. Con el tiempo pude liderar varios proyectos en donde tuve una comunicación directa con el cliente.",
+    detailLink: "/experiencia/cruce",
+    technologies: ["React.js", "Redux", "CSS Modules", "Sass", "JS", "Vtex"],
   },
 ];
 ---
@@ -26,71 +61,49 @@ const JOBS = [
       <li class="timeline-item">
         <div class="timeline-marker" />
         <div class="timeline-panel">
-          <div class="timeline-heading">
+          <div class="timeline-header">
+            <Icon name={job.logo} class="company-logo" />
             <div>
               <h4 class="timeline-title">{job.title}</h4>
-              <h5 class="timeline-title">{job.company}</h5>
+              <h5 class="timeline-company">{job.company}</h5>
             </div>
-            <span class="timeline-date">
-              {job.initDate} - {job.endDate}
-            </span>
           </div>
-          <div class="timeline-body">{job.country}</div>
+
+          <div class="timeline-extra-info">
+            <p>
+              <Icon name="mdi:map-marker" />
+              {job.country}, {job.location}
+            </p>
+            <p>
+              <Icon name="mdi:calendar" />
+              {job.initDate} - {job.endDate}
+            </p>
+          </div>
+
+          <div class="timeline-description">
+            <p>{job.description}</p>
+            <a href={job.detailLink} class="timeline-know-more">
+              Saber más <Icon name="mdi:arrow-right" />
+            </a>
+          </div>
         </div>
       </li>
     ))
   }
 </ol>
 
-<style>
-  ol {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    height: 420px;
-    display: flex;
-    flex-direction: column;
+<script>
+  function checkVisibility() {
+    const timelineItems = document.querySelectorAll(".timeline-item");
+    timelineItems.forEach((item) => {
+      const rect = item.getBoundingClientRect();
+      const isVisible = rect.top <= window.innerHeight * 0.75;
+      if (isVisible) {
+        item.classList.add("visible");
+      }
+    });
   }
 
-  .timeline {
-    position: relative;
-  }
-
-  .timeline-item {
-    display: flex;
-    position: relative;
-    flex: 1 1 0%;
-  }
-
-  .timeline::before {
-    content: "";
-    position: absolute;
-    top: 0.5rem;
-    left: 0.5rem;
-    width: 2px;
-    height: calc(100% - 1rem);
-    background-color: var(--primary-500);
-  }
-
-  .timeline-marker {
-    background-color: var(--primary-500);
-    border-radius: 50%;
-    height: 1rem;
-    width: 1rem;
-    margin-right: 1rem;
-  }
-
-  .timeline-panel {
-    flex: 1;
-  }
-
-  .timeline-heading {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .timeline-title {
-    margin: 0;
-  }
-</style>
+  window.addEventListener("load", checkVisibility);
+  window.addEventListener("scroll", checkVisibility);
+</script>

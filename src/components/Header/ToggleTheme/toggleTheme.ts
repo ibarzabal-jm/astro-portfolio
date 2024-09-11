@@ -20,9 +20,7 @@ function updateToggleButtons(theme: "light" | "dark") {
 }
 
 function toggleTheme() {
-  const currentTheme = document.documentElement.getAttribute("data-theme") as
-    | "light"
-    | "dark";
+  const currentTheme = document.documentElement.getAttribute("data-theme") as "light" | "dark";
   const newTheme = currentTheme === "light" ? "dark" : "light";
   setTheme(newTheme);
 }
@@ -38,7 +36,6 @@ themeToggles.forEach((toggle) => {
   toggle.addEventListener("click", toggleTheme);
 });
 
-// Actualizar los botones cuando cambie el tema del sistema
 prefersDarkScheme.addEventListener("change", (e) => {
   const newTheme = e.matches ? "dark" : "light";
   setTheme(newTheme);
