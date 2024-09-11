@@ -46,6 +46,8 @@ const { title } = Astro.props;
     --magenta-hover: #c20066;
     --green: #00ff00;
     --yellow: #ffd700;
+
+    --contrast-color: var(--magenta);
   }
 
   [data-theme="dark"] {
@@ -61,6 +63,8 @@ const { title } = Astro.props;
     --primary-800: #f3f4f6;
     --primary-900: #f9fafb;
     --primary-950: #ffffff;
+
+    --contrast-color: var(--orange);
   }
 
   @font-face {

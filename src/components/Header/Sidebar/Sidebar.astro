@@ -1,31 +1,27 @@
 ---
-import "./Sidebar.css";
 import ToggleTheme from "../ToggleTheme/ToggleTheme.astro";
 import DownloadCV from "../DownloadCV/DownloadCV.astro";
+import "./Sidebar.css";
 
 interface Props {
   navItems: { href: string; label: string }[];
-  currentPath: string;
 }
 
-const { navItems, currentPath } = Astro.props;
+const { navItems } = Astro.props;
 ---
 
 <div class="sidebar">
   <nav>
     {
       navItems.map((item) => (
-        <a href={item.href} class={currentPath === item.href ? "active" : ""}>
+        <a href={item.href} class="nav-item-sidebar">
           {item.label}
         </a>
       ))
     }
   </nav>
-
   <div class="sidebar-footer">
     <ToggleTheme />
     <DownloadCV />
   </div>
 </div>
-
-<script src="./sidebar.ts"></script>

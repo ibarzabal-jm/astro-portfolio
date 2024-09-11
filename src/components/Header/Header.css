@@ -50,9 +50,16 @@ a {
 
   .desktop-menu nav a:hover {
     color: var(--primary-800);
+    font-weight: 600;
   }
 
   .desktop-menu hr {
     height: 30px;
   }
+}
+
+.nav-item.active,
+.nav-item-sidebar.active {
+  color: var(--contrast-color);
+  font-weight: bold;
 }

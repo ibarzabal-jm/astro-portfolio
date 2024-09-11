@@ -11,19 +11,17 @@ const navItems = [
   { href: "#projects", label: "Projects" },
   { href: "#contact", label: "Contact" },
 ];
-
-const currentPath = Astro.url.pathname;
 ---
 
 <header>
   <div class="header-menu">
-    <a class="logo"> Juanma </a>
+    <a href="#home" class="nav-item logo"> Juanma Ibarzabal </a>
 
     <div class="desktop-menu">
       <nav>
         {
           navItems.slice(1, navItems.length).map((item) => (
-            <a href={item.href} class={currentPath === item.href ? "active" : ""}>
+            <a href={item.href} class="nav-item">
               {item.label}
             </a>
           ))
@@ -37,7 +35,7 @@ const currentPath = Astro.url.pathname;
     <Hamburger />
   </div>
 
-  <Sidebar navItems={navItems} currentPath={currentPath} />
+  <Sidebar navItems={navItems} />
 </header>
 
 <script src="./header.ts"></script>
