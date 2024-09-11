@@ -8,9 +8,9 @@ const currentPath = Astro.url.pathname;
 
 const navItems = [
   { href: "/", label: "Home" },
-  { href: "/experiences", label: "Experiences" },
-  { href: "/projects", label: "Projects" },
-  { href: "/contact", label: "Contact" },
+  { href: "#experiences", label: "Experiences" },
+  { href: "#projects", label: "Projects" },
+  { href: "#contact", label: "Contact" },
 ];
 ---
 
@@ -21,11 +21,8 @@ const navItems = [
     <div class="desktop-menu">
       <nav>
         {
-          navItems.map((item) => (
-            <a
-              href={item.href}
-              class={currentPath === item.href ? "active" : ""}
-            >
+          navItems.splice(1, navItems.length - 1).map((item) => (
+            <a href={item.href} class={currentPath === item.href ? "active" : ""}>
               {item.label}
             </a>
           ))
