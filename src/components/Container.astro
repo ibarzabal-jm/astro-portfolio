@@ -7,8 +7,8 @@ interface Props {
 const { class: className, fullWidth = false } = Astro.props;
 ---
 
-<section class:list={['container-wrapper', className]}>
-  <div class:list={['container-content', { 'full-width': fullWidth }]}>
+<section class:list={["container-wrapper", className]}>
+  <div class:list={["container-content", { "full-width": fullWidth }]}>
     <slot />
   </div>
 </section>
@@ -16,7 +16,7 @@ const { class: className, fullWidth = false } = Astro.props;
 <style>
   .container-wrapper {
     width: 100%;
-    padding: 6rem 0;
+    padding: 4rem 0;
   }
 
   .container-wrapper:nth-of-type(even) {
@@ -39,6 +39,10 @@ const { class: className, fullWidth = false } = Astro.props;
   }
 
   @media (min-width: 768px) {
+    .container-wrapper {
+      padding: 6rem 0;
+    }
+
     .container-content:not(.full-width) {
       max-width: 56rem;
     }

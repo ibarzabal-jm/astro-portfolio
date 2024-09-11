@@ -21,7 +21,7 @@ const navItems = [
     <div class="desktop-menu">
       <nav>
         {
-          navItems.splice(1, navItems.length - 1).map((item) => (
+          navItems.slice(1, navItems.length).map((item) => (
             <a href={item.href} class={currentPath === item.href ? "active" : ""}>
               {item.label}
             </a>
@@ -48,7 +48,7 @@ const navItems = [
     position: sticky;
     top: 0;
     background-color: var(--primary-50);
-    z-index: 1;
+    z-index: 3;
     transition: transform 0.3s ease-in-out;
   }
 
