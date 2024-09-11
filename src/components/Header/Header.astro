@@ -3,15 +3,16 @@ import ToggleTheme from "./ToggleTheme/ToggleTheme.astro";
 import DownloadCV from "./DownloadCV/DownloadCV.astro";
 import Hamburger from "./Hamburger/Hamburger.astro";
 import Sidebar from "./Sidebar/Sidebar.astro";
-
-const currentPath = Astro.url.pathname;
+import "./Header.css";
 
 const navItems = [
-  { href: "/", label: "Home" },
+  { href: "#home", label: "Home" },
   { href: "#experiences", label: "Experiences" },
   { href: "#projects", label: "Projects" },
   { href: "#contact", label: "Contact" },
 ];
+
+const currentPath = Astro.url.pathname;
 ---
 
 <header>
@@ -38,64 +39,5 @@ const navItems = [
 
   <Sidebar navItems={navItems} currentPath={currentPath} />
 </header>
-
-<style>
-  header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    position: sticky;
-    top: 0;
-    background-color: var(--primary-50);
-    z-index: 3;
-    transition: transform 0.3s ease-in-out;
-  }
-
-  .header-menu {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    max-width: 80rem;
-    padding: 1rem;
-    z-index: 50;
-  }
-
-  a {
-    color: var(--primary-600);
-  }
-  .logo {
-    font-weight: bold;
-    color: var(--primary-900);
-  }
-
-  .desktop-menu {
-    display: none;
-  }
-
-  @media screen and (min-width: 768px) {
-    .desktop-menu {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-    }
-
-    .desktop-menu nav a {
-      margin-right: 1.5rem;
-      color: var(--primary-600);
-      text-decoration: none;
-      transition: color 0.3s ease-in-out;
-    }
-
-    .desktop-menu nav a:hover {
-      color: var(--primary-800);
-    }
-
-    .desktop-menu hr {
-      height: 30px;
-    }
-  }
-</style>
 
 <script src="./header.ts"></script>
