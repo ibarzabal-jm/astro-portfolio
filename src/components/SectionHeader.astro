@@ -1,0 +1,33 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Props {
+  title: string;
+  icon?: string;
+}
+
+const { title, icon } = Astro.props;
+---
+
+<h2 class="section-header">
+  {title}
+  {icon && <Icon name={icon} />}
+</h2>
+
+<style>
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-900);
+  }
+
+  .section-header [astro-icon] {
+    width: 1.5em;
+    height: 1.5em;
+    color: var(--orange);
+  }
+</style>
