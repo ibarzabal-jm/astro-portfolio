@@ -1,6 +1,6 @@
 .theme-toggle {
-  --icon-fill: var(--primary-600);
-  --icon-fill-hover: var(--primary-800);
+  --icon-fill: var(--yellow);
+  --icon-fill-hover: var(--orange);
   background: none;
   border: none;
   padding: 4px;
@@ -24,8 +24,8 @@
 }
 
 [data-theme="dark"] .theme-toggle {
-  --icon-fill: var(--primary-400);
-  --icon-fill-hover: var(--primary-300);
+  --icon-fill: var(--primary-900);
+  --icon-fill-hover: var(--primary-800);
 }
 
 .theme-toggle:hover {
