@@ -100,6 +100,8 @@ const JOBS = [
       const isVisible = rect.top <= window.innerHeight * 0.75;
       if (isVisible) {
         item.classList.add("visible");
+      } else {
+        item.classList.remove("visible");
       }
     });
   }
