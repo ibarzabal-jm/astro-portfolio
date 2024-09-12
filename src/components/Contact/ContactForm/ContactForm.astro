@@ -1,0 +1,25 @@
+---
+import ContactCard from "../ContactCard.astro";
+import "./ContactForm.css";
+---
+
+<ContactCard title="Envíame un email">
+  <form id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+    <input type="hidden" name="access_key" value="90248a24-d2ee-44cf-a4fb-a341a4f3908a" />
+    <div class="form-group">
+      <label for="name">Nombre</label>
+      <input type="text" id="name" name="name" required />
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required />
+    </div>
+    <div class="form-group">
+      <label for="message">Mensaje</label>
+      <textarea id="message" name="message" required></textarea>
+    </div>
+    <button class="send-button" type="submit">Enviar mensaje</button>
+  </form>
+</ContactCard>
+
+<script src="./contactForm.ts"></script>

@@ -1,0 +1,24 @@
+---
+import ContactInfo from "./ContactInfo/ContactInfo.astro";
+import ContactForm from "./ContactForm/ContactForm.astro";
+---
+
+<div class="contact-container">
+  <ContactInfo />
+  <ContactForm />
+</div>
+
+<style>
+  .contact-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .contact-container {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+  }
+</style>

@@ -1,0 +1,34 @@
+.contact-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.contact-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.contact-item a {
+  display: flex;
+  align-items: center;
+
+  font-size: 1rem;
+
+  color: var(--primary-600);
+  transition: color 0.3s ease;
+  text-decoration: none;
+}
+
+.contact-item a:hover {
+  color: var(--contrast-color);
+}
+
+.contact-item a svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-right: 0.5rem;
+  color: var(--contrast-color);
+}

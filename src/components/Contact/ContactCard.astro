@@ -1,0 +1,37 @@
+---
+const { title } = Astro.props;
+---
+
+<div class="contact-card">
+  <h3 class="contact-card-title">{title}</h3>
+  <slot />
+</div>
+
+<style>
+  .contact-card {
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    padding: 1.5rem;
+
+    background-color: var(--primary-50);
+    border-radius: 0.5rem;
+
+    border: 1px solid var(--primary-100);
+    box-shadow:
+      0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+
+  .contact-card-title {
+    font-size: 1.5rem;
+    line-height: 2em;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+
+    color: var(--primary-900);
+  }
+</style>

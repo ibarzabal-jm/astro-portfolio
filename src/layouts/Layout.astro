@@ -20,8 +20,8 @@ const { title } = Astro.props;
   </head>
   <body>
     <Header />
-
     <slot />
+    <div id="toast-container"></div>
   </body>
 </html>
 
@@ -45,8 +45,14 @@ const { title } = Astro.props;
     --magenta: #e6007e;
     --magenta-hover: #c20066;
     --green: #00ff00;
+    --green-hover: #00c200;
     --yellow: #ffd700;
     --blue: #3b82f6;
+
+    --toast-background-success: #2f855a;
+    --toast-background-error: #c53030;
+    --toast-background-info: #0ea5e9;
+    --toast-text-color: #fff;
 
     --contrast-color: var(--magenta);
   }
@@ -64,6 +70,11 @@ const { title } = Astro.props;
     --primary-800: #f3f4f6;
     --primary-900: #f9fafb;
     --primary-950: #ffffff;
+
+    --toast-background-success: #2f855a;
+    --toast-background-error: #c53030;
+    --toast-background-info: #0ea5e9;
+    --toast-text-color: #fff;
 
     --contrast-color: var(--orange);
   }
@@ -148,5 +159,39 @@ const { title } = Astro.props;
     display: grid;
     grid-template-columns: [contend-start] 1fr [content-end];
     overflow-x: hidden;
+  }
+
+  #toast-container {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+
+  .toast {
+    color: var(--toast-text-color);
+    align-self: center;
+    padding: 12px 20px;
+    border-radius: 4px;
+    margin-top: 10px;
+    opacity: 0;
+    transform: translateY(50px);
+    transition:
+      opacity 0.3s,
+      transform 0.3s;
+  }
+
+  .toast.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .toast.success {
+    background-color: var(--toast-background-success);
+  }
+  .toast.error {
+    background-color: var(--toast-background-error);
+  }
+  .toast.info {
+    background-color: var(--toast-background-info);
   }
 </style>

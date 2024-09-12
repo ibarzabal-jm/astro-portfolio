@@ -1,0 +1,40 @@
+---
+import { Icon } from "astro-icon/components";
+import ContactCard from "../ContactCard.astro";
+import CopyToClipboard from "../../CopyToClipboard/CopyToClipboard.astro";
+import "./ContactInfo.css";
+
+const contactInfo = [
+  {
+    icon: "mdi:email",
+    value: "ibarzabalsallesjm@gmail.com",
+    href: "mailto:ibarzabalsallesjm@gmail.com",
+  },
+  {
+    icon: "mdi:whatsapp",
+    value: "+54 9 11 3785-4477",
+    href: "https://wa.me/5491137854477?text=Hola%20Juanma%2C%20vi%20tu%20portfolio%20y%20me%20gustar%C3%ADa%20contactarte.",
+  },
+  {
+    icon: "mdi:linkedin",
+    value: "juanma-ibarzabal",
+    href: "https://www.linkedin.com/in/juanma-ibarzabal/",
+  },
+];
+---
+
+<ContactCard title="Información de contacto">
+  <ul class="contact-list">
+    {
+      contactInfo.map((item) => (
+        <li class="contact-item">
+          <a href={item.href} target="_blank" rel="noopener noreferrer">
+            <Icon name={item.icon} />
+            {item.value}
+          </a>
+          <CopyToClipboard value={item.value} />
+        </li>
+      ))
+    }
+  </ul>
+</ContactCard>

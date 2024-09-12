@@ -1,0 +1,21 @@
+---
+import { Icon } from "astro-icon/components";
+import "./CopyToClipboard.css";
+
+interface Props {
+  value: string;
+}
+
+const { value } = Astro.props;
+---
+
+<button class="copy-button" data-value={value}>
+  <span class="copy-icon">
+    <Icon name="mdi:clipboard-text-multiple-outline" />
+  </span>
+  <span class="check-icon">
+    <Icon name="mdi:check" />
+  </span>
+</button>
+
+<script src="./copyToClipboard.ts"></script>
