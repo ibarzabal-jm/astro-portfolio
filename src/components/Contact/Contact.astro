@@ -1,0 +1,35 @@
+---
+import { Icon } from "astro-icon/components";
+import ContactForm from "./ContactForm.astro";
+import "./Contact.css";
+
+const email = "ibarzabalsallesjm@gmail.com";
+const whatsappNumber = "5491137854477";
+const whatsappMessage = encodeURIComponent(
+  "Hola, me comunico con vos Juanma porque vi tu página de internet."
+);
+const whatsappLink = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
+const address = "Buenos Aires, Argentina";
+---
+
+<div class="contact-container">
+  <div class="contact-info">
+    <h3>Información de contacto</h3>
+    <p>
+      <Icon name="mdi:email" />
+      <a href={`mailto:${email}`}>{email}</a>
+    </p>
+    <p>
+      <Icon name="mdi:whatsapp" />
+      <a href={whatsappLink} target="_blank" rel="noopener noreferrer">Envíame un WhatsApp</a>
+    </p>
+    <p>
+      <Icon name="mdi:map-marker" />
+      {address}
+    </p>
+  </div>
+  <div class="contact-form">
+    <h3>Envíame un mensaje</h3>
+    <ContactForm />
+  </div>
+</div>

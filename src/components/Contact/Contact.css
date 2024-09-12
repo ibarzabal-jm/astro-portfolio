@@ -1,0 +1,46 @@
+.contact-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.contact-info,
+.contact-form {
+  flex: 1;
+}
+
+.contact-info h3,
+.contact-form h3 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  color: var(--primary-800);
+}
+
+.contact-info p {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.contact-info a {
+  color: var(--primary-600);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.contact-info a:hover {
+  color: var(--contrast-color);
+}
+
+.contact-info [astro-icon] {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: var(--contrast-color);
+}
+
+@media (min-width: 768px) {
+  .contact-container {
+    flex-direction: row;
+  }
+}
