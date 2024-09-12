@@ -17,8 +17,7 @@ const JOBS = [
     initDate: formatDate(new Date("2022-02-22")),
     company: "Inventa",
     title: "Frontend Software Engineer",
-    country: "Brasil",
-    location: "SP",
+    location: "Brasil, São Paulo",
     logo: "inventa",
     description:
       "Comencé ayudando en el desarrollo de un marketplace B2B, y luego tuve la oportunidad de liderar el frontend del backoffice de Order Management, donde gestionábamos el seguimiento de pedidos utilizando Next.js 12 y TypeScript.  Con el tiempo pasé de no saber una palabra de portugués a hablarlo diariamente con mis compañeros, contribuyendo de forma significativa en el lanzamiento de nuevas funcionalidades.",
@@ -44,8 +43,7 @@ const JOBS = [
     company: "Cruce",
     title: "Frontend Developer",
     url: "https://www.e-cruce.com/",
-    country: "Argentina",
-    location: "Bs. As.",
+    location: "Argentina, Buenos Aires",
     logo: "cruce",
     description:
       "Mi primer trabajo en IT, donde fui el encargado del desarrollo, soporte y evolución de tiendas B2C principalemente, utilizando la plataforma Vtex. Con el tiempo pude liderar varios proyectos en donde tuve una comunicación directa con el cliente.",
@@ -62,7 +60,9 @@ const JOBS = [
         <div class="timeline-marker" />
         <div class="timeline-panel">
           <div class="timeline-header">
-            <Icon name={job.logo} class="company-logo" />
+            <div class="timeline-header-logo">
+              <Icon name={job.logo} class="company-logo" />
+            </div>
             <div>
               <h3 class="timeline-title">{job.title}</h3>
               <h4 class="timeline-company">{job.company}</h4>
@@ -71,8 +71,8 @@ const JOBS = [
 
           <div class="timeline-extra-info">
             <p>
-              <Icon name="mdi:map-marker" />
-              {job.country}, {job.location}
+              <Icon name="mdi:map-marker-outline" />
+              {job.location}
             </p>
             <p>
               <Icon name="mdi:calendar" />
@@ -80,8 +80,8 @@ const JOBS = [
             </p>
           </div>
 
-          <div class="timeline-description">
-            <p>{job.description}</p>
+          <div class="timeline-body">
+            <p class="timeline-description">{job.description}</p>
             <a href={job.detailLink} class="timeline-know-more">
               Saber más <Icon name="mdi:arrow-right" />
             </a>
