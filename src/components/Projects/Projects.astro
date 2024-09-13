@@ -1,0 +1,39 @@
+---
+import ProjectCard from "./ProjectCard/ProjectCard.astro";
+import "./Projects.css";
+
+const projects = [
+  {
+    title: "Buscaminas",
+    description: "Clasico juego de buscaminas, realizado con React.js, Css y Typescript.",
+    image: "projects/img/buscamina.webp",
+    video: "projects/video/buscamina.mp4",
+    github: "https://github.com/ibarzabal-jm/React-Minesweeper",
+    demo: "https://juanma-minesweeper.netlify.app/",
+    technologies: ["React", "Css", "Typescript"],
+  },
+  {
+    title: "NeonGiphy Search",
+    description: "Buscador de gifs con estilo Neon, realizado con Next.js y Typescript.",
+    image: "/path/to/project2-image.jpg",
+    video: "/path/to/project2-video.mp4",
+    github: "https://github.com/ibarzabal-jm/Giphy-Next-App",
+    demo: "https://juanma-neongiphy.vercel.app/",
+    technologies: ["Next.js", "Typescript", "Sass", "Giphy API"],
+  },
+  {
+    title: "Juanma Pokedex",
+    description:
+      "Desafío 5 de DevOff: Es una Pokedex hecha en React.js utilizando Chakra-UI, haciendo uso de la api pokeapi.co",
+    image: "/path/to/project3-image.jpg",
+    video: "/path/to/project3-video.mp4",
+    github: "https://github.com/ibarzabal-jm/React-Pokedex-DevOff-Desafio-5",
+    demo: "https://juanma-pokedex.netlify.app/",
+    technologies: ["React.js", "Chakra-UI", "JavaScript", "Pokeapi", "React-Router"],
+  },
+];
+---
+
+<div class="projects-container">
+  {projects.map((project) => <ProjectCard {...project} />)}
+</div>

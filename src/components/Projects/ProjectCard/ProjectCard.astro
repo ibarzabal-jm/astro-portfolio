@@ -1,0 +1,38 @@
+---
+import { Icon } from "astro-icon/components";
+import "./ProjectCard.css";
+
+interface Props {
+  title: string;
+  description: string;
+  image: string;
+  video: string;
+  github: string;
+  demo: string;
+  technologies: string[];
+}
+
+const { title, description, image, video, github, demo, technologies } = Astro.props;
+---
+
+<div class="project-card">
+  <div class="project-media">
+    <img src={image} alt={title} />
+    <video src={video} muted loop playsinline autoplay preload="auto"></video>
+  </div>
+  <div class="project-content">
+    <h3 class="project-title">{title}</h3>
+    <p class="project-description">{description}</p>
+    <div class="project-technologies">
+      {technologies.map((tech) => <span>{tech}</span>)}
+    </div>
+    <div class="project-links">
+      <a href={demo} class="btn-outline" target="_blank" rel="noopener noreferrer">
+        <Icon name="mdi:open-in-new" /> Ver Proyecto
+      </a>
+      <a href={github} class="btn-outline" target="_blank" rel="noopener noreferrer">
+        <Icon name="mdi:github" /> GitHub
+      </a>
+    </div>
+  </div>
+</div>
