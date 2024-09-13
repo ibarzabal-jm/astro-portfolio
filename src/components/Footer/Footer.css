@@ -1,0 +1,134 @@
+footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  background-color: var(--primary-50);
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 80rem;
+  padding: 1.5rem 1rem;
+}
+
+.footer-content a {
+  text-decoration: none;
+  color: var(--primary-600);
+}
+
+.made-with-love {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+
+  & svg {
+    height: 0.875rem;
+    color: red;
+    animation: heart-beat 1s infinite;
+    filter: drop-shadow(0 0 5px rgba(255, 0, 0, 0.5));
+    transition: filter 0.3s ease;
+  }
+
+  &:hover {
+    color: var(--contrast-color);
+  }
+}
+
+.signature {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.signature svg {
+  transition: transform 0.3s;
+
+  width: 50px;
+  height: auto;
+
+  &:hover {
+    transform: scale(1.1);
+    color: var(--contrast-color);
+  }
+
+  & .text {
+    animation: text 4s ease infinite forwards;
+    stroke-dasharray: 313;
+    stroke-dashoffset: 313;
+  }
+  & .point {
+    animation: point 4s ease infinite forwards;
+    stroke-dasharray: 26;
+    stroke-dashoffset: 26;
+  }
+
+  & .dash {
+    animation: dash 4s ease infinite forwards;
+    stroke-dasharray: 108;
+    stroke-dashoffset: 108;
+  }
+}
+
+@media (min-width: 768px) {
+  .made-with-love {
+    flex-direction: row;
+  }
+}
+
+@keyframes heart-beat {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes text {
+  0% {
+    stroke-dashoffset: 313;
+  }
+  60% {
+    stroke-dashoffset: 0;
+  }
+  70% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes point {
+  0% {
+    stroke-dashoffset: 26;
+  }
+  60% {
+    stroke-dashoffset: 26;
+  }
+  70% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dashoffset: 108;
+  }
+  70% {
+    stroke-dashoffset: 108;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
