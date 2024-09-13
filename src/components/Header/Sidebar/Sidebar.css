@@ -7,7 +7,7 @@
   z-index: 4;
   left: 0px;
   top: 0px;
-  height: 100vh;
+  height: 100dvh;
   width: 100%;
   list-style: none;
   background-color: var(--primary-100);

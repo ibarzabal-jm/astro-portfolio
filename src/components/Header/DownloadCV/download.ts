@@ -2,7 +2,7 @@ const button = document.getElementById("downloadCV");
 
 button?.addEventListener("click", async () => {
   try {
-    const response = await fetch("/JuanmaIbarzabal-CV.pdf");
+    const response = await fetch("/juan-manuel-ibarzabal-cv.pdf");
     const blob = await response.blob();
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement("a");

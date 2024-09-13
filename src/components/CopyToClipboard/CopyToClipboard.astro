@@ -9,7 +9,7 @@ interface Props {
 const { value } = Astro.props;
 ---
 
-<button class="copy-button" data-value={value}>
+<button class="copy-button" data-value={value} aria-label="Copiar al portapapeles">
   <span class="copy-icon">
     <Icon name="mdi:clipboard-text-multiple-outline" />
   </span>
