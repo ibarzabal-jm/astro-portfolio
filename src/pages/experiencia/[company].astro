@@ -1,0 +1,155 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { Icon } from "astro-icon/components";
+import { ViewTransitions } from "astro:transitions";
+
+export function getStaticPaths() {
+  return [{ params: { company: "inventa" } }, { params: { company: "cruce" } }];
+}
+
+const { company } = Astro.params;
+
+const experiences = {
+  inventa: {
+    company: "Inventa",
+    logo: "inventa",
+    role: "Frontend Software Engineer",
+    period: "Febrero 2022 - Presente",
+    location: "Brasil, São Paulo",
+    description:
+      "Comencé ayudando en el desarrollo de un marketplace B2B, y luego tuve la oportunidad de liderar el frontend del backoffice de Order Management, donde gestionábamos el seguimiento de pedidos utilizando Next.js 12 y TypeScript. Con el tiempo pasé de no saber una palabra de portugués a hablarlo diariamente con mis compañeros, contribuyendo de forma significativa en el lanzamiento de nuevas funcionalidades.",
+    responsibilities: [
+      "Desarrollo de interfaces de usuario con Next.js y TypeScript",
+      "Liderazgo técnico en el proyecto de Order Management",
+      "Implementación de nuevas funcionalidades y mejoras de rendimiento",
+      "Colaboración en un equipo internacional y multilingüe",
+    ],
+    technologies: [
+      "Next.js",
+      "TypeScript",
+      "React",
+      "Jest",
+      "Zod",
+      "React Hook Form",
+      "React Query",
+      "React Testing Library",
+    ],
+  },
+  cruce: {
+    company: "Cruce",
+    logo: "cruce",
+    role: "Frontend Developer",
+    period: "Abril 2021 - Febrero 2022",
+    location: "Argentina, Buenos Aires",
+    description:
+      "Mi primer trabajo en IT, donde fui el encargado del desarrollo, soporte y evolución de tiendas B2C principalmente, utilizando la plataforma Vtex. Con el tiempo pude liderar varios proyectos en donde tuve una comunicación directa con el cliente.",
+    responsibilities: [
+      "Desarrollo y mantenimiento de tiendas online B2C",
+      "Implementación de diseños responsivos y optimización de rendimiento",
+      "Gestión de proyectos y comunicación directa con clientes",
+      "Integración de APIs y servicios de terceros",
+    ],
+    technologies: ["React.js", "Redux", "CSS Modules", "Sass", "JavaScript", "Vtex"],
+  },
+};
+
+const experience = experiences[company];
+---
+
+<Layout title={`Experiencia en ${experience.company} | Juanma Ibarzabal`}>
+  <ViewTransitions />
+  <main>
+    <div class="experience-header">
+      <div class="logo-container" transition:name={`logo-${company}`}>
+        <Icon name={experience.logo} />
+      </div>
+      <h1>{experience.company}</h1>
+    </div>
+    <div class="experience-content">
+      <h2>{experience.role}</h2>
+      <p class="period">{experience.period}</p>
+      <p class="location">{experience.location}</p>
+      <p class="description">{experience.description}</p>
+      <h3>Responsabilidades:</h3>
+      <ul>
+        {experience.responsibilities.map((resp) => <li>{resp}</li>)}
+      </ul>
+      <h3>Tecnologías utilizadas:</h3>
+      <div class="technologies">
+        {experience.technologies.map((tech) => <span class="tech-tag">{tech}</span>)}
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  .experience-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  .logo-container {
+    width: 80px;
+    height: 80px;
+    margin-right: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--primary-100);
+    border-radius: 50%;
+  }
+  .logo-container [astro-icon] {
+    width: 50px;
+    height: 50px;
+    color: var(--primary-900);
+  }
+  h1 {
+    font-size: 2.5rem;
+    color: var(--primary-900);
+  }
+  h2 {
+    font-size: 1.8rem;
+    color: var(--primary-800);
+    margin-bottom: 0.5rem;
+  }
+  .period,
+  .location {
+    color: var(--primary-600);
+    margin-bottom: 0.5rem;
+  }
+  .description {
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+  h3 {
+    font-size: 1.4rem;
+    color: var(--primary-800);
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  ul {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  li {
+    margin-bottom: 0.5rem;
+  }
+  .technologies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .tech-tag {
+    background-color: var(--primary-100);
+    color: var(--primary-800);
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+  }
+</style>

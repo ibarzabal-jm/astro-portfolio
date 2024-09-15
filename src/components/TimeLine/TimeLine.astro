@@ -60,7 +60,7 @@ const JOBS = [
         <div class="timeline-marker" />
         <div class="timeline-panel">
           <div class="timeline-header">
-            <div class="timeline-header-logo">
+            <div class="timeline-header-logo" transition:name={`logo-${job.company.toLowerCase()}`}>
               <Icon name={job.logo} class="company-logo" />
             </div>
             <div>
