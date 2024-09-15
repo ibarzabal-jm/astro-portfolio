@@ -6,21 +6,21 @@ import Sidebar from "./Sidebar/Sidebar.astro";
 import "./Header.css";
 
 const navItems = [
-  { href: "#home", label: "Inicio" },
-  { href: "#experiences", label: "Experiencia" },
-  { href: "#projects", label: "Proyectos" },
-  { href: "#contact", label: "Contacto" },
+  { href: "/#home", label: "Inicio" },
+  { href: "/#experiences", label: "Experiencia" },
+  { href: "/#projects", label: "Proyectos" },
+  { href: "/#contact", label: "Contacto" },
 ];
 ---
 
 <header>
   <div class="header-menu">
-    <a href="#home" class="nav-item logo"> Juanma Ibarzabal </a>
+    <a href="/#home" class="nav-item logo"> Juanma Ibarzabal </a>
 
     <div class="desktop-menu">
       <nav>
         {
-          navItems.slice(1, navItems.length).map((item) => (
+          navItems.map((item) => (
             <a href={item.href} class="nav-item">
               {item.label}
             </a>
@@ -38,4 +38,17 @@ const navItems = [
   <Sidebar navItems={navItems} />
 </header>
 
-<script src="./header.ts"></script>
+<script>
+  import { headerToggleOnScroll } from "./utils/scroll";
+  import { initializeNavigation, updateActiveNavItem } from "./utils/navigation";
+
+  function setupHeader() {
+    window.removeEventListener("scroll", headerToggleOnScroll);
+    window.addEventListener("scroll", headerToggleOnScroll);
+
+    initializeNavigation();
+    updateActiveNavItem();
+  }
+
+  document.addEventListener("astro:page-load", setupHeader);
+</script>

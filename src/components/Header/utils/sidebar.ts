@@ -19,3 +19,5 @@ export function initializeSidebar() {
     hamburger.addEventListener("click", toggleSidebar);
   }
 }
+
+document.addEventListener("astro:page-load", initializeSidebar);
