@@ -20,7 +20,7 @@ const navItems = [
     <div class="desktop-menu">
       <nav>
         {
-          navItems.map((item) => (
+          navItems.slice(1, navItems.length).map((item) => (
             <a href={item.href} class="nav-item">
               {item.label}
             </a>
@@ -40,14 +40,13 @@ const navItems = [
 
 <script>
   import { headerToggleOnScroll } from "./utils/scroll";
-  import { initializeNavigation, updateActiveNavItem } from "./utils/navigation";
+  import { initializeSidebar } from "./utils/sidebar";
+  import { initializeNavigation } from "./utils/navigation";
 
   function setupHeader() {
-    window.removeEventListener("scroll", headerToggleOnScroll);
-    window.addEventListener("scroll", headerToggleOnScroll);
-
+    headerToggleOnScroll();
+    initializeSidebar();
     initializeNavigation();
-    updateActiveNavItem();
   }
 
   document.addEventListener("astro:page-load", setupHeader);
