@@ -88,6 +88,7 @@ export const experiences = {
       "Vtex",
       "React Hook Form",
       "Handlebars",
+      "Gitlab",
     ],
     color: "blue",
     longDescription: `
