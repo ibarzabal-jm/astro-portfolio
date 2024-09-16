@@ -1,6 +1,7 @@
 ---
 import { Icon } from "astro-icon/components";
 import "./TimeLine.css";
+import { experiences } from "@src/data/experiences";
 
 const currentLocale = Astro.request.headers.get("accept-language")?.split(",")[0] || "es-AR";
 
@@ -11,77 +12,47 @@ const formatDate = (date: Date) => {
   });
 };
 
-const JOBS = [
-  {
-    endDate: formatDate(new Date()),
-    initDate: formatDate(new Date("2022-02-22")),
-    company: "Inventa",
-    title: "Frontend Software Engineer",
-    location: "Brasil, São Paulo",
-    logo: "inventa",
-    description:
-      "Comencé ayudando en el desarrollo de un marketplace B2B, y luego tuve la oportunidad de liderar el frontend del backoffice de Order Management, donde gestionábamos el seguimiento de pedidos utilizando Next.js 12 y TypeScript.  Con el tiempo pasé de no saber una palabra de portugués a hablarlo diariamente con mis compañeros, contribuyendo de forma significativa en el lanzamiento de nuevas funcionalidades.",
-    detailLink: "/experiencia/inventa",
-    technologies: [
-      "Next.js",
-      "TypeScript",
-      "React",
-      "Jest",
-      "Zod",
-      "React Hook Form",
-      "React Query",
-      "React Testing Library",
-      "Jest",
-      "Zod",
-      "React Hook Form",
-      "Tanstack Query",
-    ],
-  },
-  {
-    initDate: formatDate(new Date("2021-04-05")),
-    endDate: formatDate(new Date("2022-02-02")),
-    company: "Cruce",
-    title: "Frontend Developer",
-    url: "https://www.e-cruce.com/",
-    location: "Argentina, Buenos Aires",
-    logo: "cruce",
-    description:
-      "Mi primer trabajo en IT, donde fui el encargado del desarrollo, soporte y evolución de tiendas B2C principalemente, utilizando la plataforma Vtex. Con el tiempo pude liderar varios proyectos en donde tuve una comunicación directa con el cliente.",
-    detailLink: "/experiencia/cruce",
-    technologies: ["React.js", "Redux", "CSS Modules", "Sass", "JS", "Vtex"],
-  },
-];
+const JOBS = Object.entries(experiences).map(([key, job]) => ({
+  ...job,
+  detailLink: `/experiencia/${key}`,
+  initDate: formatDate(job.initDate),
+  endDate: formatDate(job.endDate),
+}));
 ---
 
 <ol class="timeline">
   {
     JOBS.map((job) => (
-      <li class="timeline-item">
+      <li class={`timeline-item ${job.color}`}>
         <div class="timeline-marker" />
         <div class="timeline-panel">
           <div class="timeline-header">
-            <div class="timeline-header-logo" transition:name={`logo-${job.company.toLowerCase()}`}>
+            <div class="timeline-header-logo" transition:name={`logo-${job.logo}`}>
               <Icon name={job.logo} class="company-logo" />
             </div>
             <div>
-              <h3 class="timeline-title">{job.title}</h3>
-              <h4 class="timeline-company">{job.company}</h4>
+              <h3 class="timeline-title" transition:name={`title-${job.title}`}>
+                {job.title}
+              </h3>
+              <h4 class="timeline-company" transition:name={`company-${job.company}`}>
+                {job.company}
+              </h4>
             </div>
           </div>
 
           <div class="timeline-extra-info">
-            <p>
+            <p transition:name={`location-${job.company}`}>
               <Icon name="mdi:map-marker-outline" />
               {job.location}
             </p>
-            <p>
+            <p transition:name={`period-${job.company}`}>
               <Icon name="mdi:calendar" />
               {job.initDate} - {job.endDate}
             </p>
           </div>
 
           <div class="timeline-body">
-            <p class="timeline-description">{job.description}</p>
+            <p class="timeline-description">{job.shortDescription}</p>
             <a href={job.detailLink} class="timeline-know-more">
               Saber más <Icon name="mdi:arrow-right" />
             </a>
