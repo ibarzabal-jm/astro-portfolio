@@ -27,6 +27,7 @@ export const experiences = {
       "Jest",
       "Tanstack Query",
       "Tailwind CSS",
+      "AWS S3",
       "Jira",
       "Github",
     ],
