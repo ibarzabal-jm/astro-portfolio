@@ -18,12 +18,12 @@
   background: linear-gradient(to bottom, var(--magenta), var(--blue));
 }
 
-.timeline-item:nth-child(1) {
-  color: var(--magenta);
+.timeline-item.blue {
+  color: var(--blue);
 }
 
-.timeline-item:nth-child(2) {
-  color: var(--blue);
+.timeline-item.magenta {
+  color: var(--magenta);
 }
 
 .timeline-item {

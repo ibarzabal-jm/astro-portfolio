@@ -1,49 +1,81 @@
 import { smoothScroll } from "./scroll";
 import { closeSidebar } from "./sidebar";
 
-const header = document.querySelector("header");
-const headerHeight = header?.offsetHeight || 0;
-
-export function updateActiveNavItem() {
-  const scrollPosition = window.scrollY + headerHeight + 50;
-  const sections = document.querySelectorAll("section[id], div[id]");
+function updateActiveNavItem() {
+  const headerHeight = document.querySelector("header")?.offsetHeight ?? 0;
   const navItems = document.querySelectorAll(".nav-item, .nav-item-sidebar");
+  const sections = document.querySelectorAll("section[id], div[id]");
 
-  sections.forEach((section) => {
-    const sectionTop = (section as HTMLElement).offsetTop;
-    const sectionBottom = sectionTop + (section as HTMLElement).offsetHeight;
-    const sectionId = section.id;
+  const observerOptions = {
+    rootMargin: `-${headerHeight}px 0px -50% 0px`,
+    threshold: 0,
+  };
 
-    if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
-      navItems.forEach((item) => {
-        item.classList.remove("active");
-        if (item.getAttribute("href") === `#${sectionId}`) {
-          item.classList.add("active");
-        }
-      });
-    }
-  });
-}
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const sectionId = entry.target.id;
+        navItems.forEach((item) => {
+          const href = item.getAttribute("href");
+          if (href) {
+            const itemPath = href.split("#")[0];
+            const itemHash = href.split("#")[1];
+            if (
+              (itemPath === "" || itemPath === window.location.pathname) &&
+              itemHash === sectionId
+            ) {
+              item.classList.add("active");
+            } else {
+              item.classList.remove("active");
+            }
+          }
+        });
+      }
+    });
+  }, observerOptions);
 
-export function handleNavItemClick(e: Event) {
-  e.preventDefault();
-  const target = e.currentTarget as HTMLAnchorElement;
-  const targetId = target.getAttribute("href");
+  sections.forEach((section) => observer.observe(section));
 
-  if (targetId) {
-    closeSidebar();
-    setTimeout(() => {
-      smoothScroll(targetId);
-    }, 300);
-  }
+  return () => {
+    observer.disconnect();
+  };
 }
 
 export function initializeNavigation() {
-  const allNavItems = document.querySelectorAll(".nav-item, .nav-item-sidebar");
-  allNavItems.forEach((item) => {
-    item.addEventListener("click", handleNavItemClick);
+  const navItems = document.querySelectorAll(".nav-item, .nav-item-sidebar");
+
+  navItems.forEach((item) => {
+    item.addEventListener("click", (e) => {
+      const href = item.getAttribute("href");
+      if (!href) return;
+
+      const currentPath = window.location.pathname;
+      const [targetPath, targetHash] = href.split("#");
+
+      if (targetPath === "" || targetPath === currentPath) {
+        e.preventDefault();
+        closeSidebar();
+
+        if (targetHash) {
+          smoothScroll(`#${targetHash}`);
+          history.pushState(null, "", `#${targetHash}`);
+        } else {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+      } else {
+        closeSidebar();
+      }
+    });
   });
 
   updateActiveNavItem();
-  window.addEventListener("scroll", updateActiveNavItem);
+
+  const observer = new IntersectionObserver(updateActiveNavItem, {
+    rootMargin: "-100px 0px -50% 0px",
+    threshold: 0,
+  });
+
+  document.querySelectorAll("section[id], div[id]").forEach((section) => {
+    observer.observe(section);
+  });
 }
