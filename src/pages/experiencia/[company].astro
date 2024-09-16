@@ -35,7 +35,7 @@ const experience = {
 <Layout title={`Experiencia en ${experience.company} | Juanma Ibarzabal`}>
   <ViewTransitions />
   <main>
-    <Container class="experience-container">
+    <Container>
       <div class="experience-header">
         <div class="logo-container" transition:name={`logo-${experience.logo}`}>
           <Icon name={experience.logo} />
@@ -79,10 +79,6 @@ const experience = {
 </Layout>
 
 <style define:vars={{ companyColor: `var(--${experience.color})` }}>
-  :global(.experience-container) {
-    background-color: var(--primary-100) !important;
-  }
-
   .experience-header {
     display: flex;
     align-items: flex-start;

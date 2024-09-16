@@ -17,8 +17,19 @@ const { title, description, image, video, github, demo, technologies } = Astro.p
 
 <div class="project-card">
   <div class="project-media">
-    <img src={image} alt={title} />
-    <video src={video} muted loop playsinline autoplay preload="auto"></video>
+    <img src={image} alt={`Captura de pantalla del proyecto ${title}`} />
+    <video
+      src={video}
+      muted
+      loop
+      playsinline
+      autoplay
+      preload="auto"
+      aria-label={`Demostración del proyecto ${title}`}
+    >
+      <track kind="captions" src="" srclang="es" label="Español" />
+      Tu navegador no soporta el elemento de video.
+    </video>
   </div>
   <div class="project-content">
     <h3 class="project-title">{title}</h3>
