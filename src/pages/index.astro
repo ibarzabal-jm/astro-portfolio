@@ -6,6 +6,7 @@ import HomeHero from "../components/HomeHero/HomeHero.astro";
 import SectionHeader from "../components/SectionHeader.astro";
 import Contact from "../components/Contact/Contact.astro";
 import Projects from "../components/Projects/Projects.astro";
+import ContactLink from "../components/ContactLink/ContactLink.astro";
 ---
 
 <Layout title="Juanma Ibarzabal | Portfolio">
@@ -17,6 +18,9 @@ import Projects from "../components/Projects/Projects.astro";
     <Container id="experiences">
       <SectionHeader title="Experiencia" icon="mdi:briefcase-variant-outline" />
       <TimeLine />
+      <div class="contact-link-container">
+        <ContactLink />
+      </div>
     </Container>
 
     <Container id="projects">
@@ -35,5 +39,10 @@ import Projects from "../components/Projects/Projects.astro";
   main {
     font-size: 20px;
     line-height: 1.6;
+  }
+  .contact-link-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
   }
 </style>
