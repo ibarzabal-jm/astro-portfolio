@@ -8,7 +8,7 @@ interface Props {
   image: string;
   video: string;
   github: string;
-  demo: string;
+  demo?: string;
   technologies: string[];
 }
 
@@ -38,9 +38,13 @@ const { title, description, image, video, github, demo, technologies } = Astro.p
       {technologies.map((tech) => <span>{tech}</span>)}
     </div>
     <div class="project-links">
-      <a href={demo} class="btn-outline" target="_blank" rel="noopener noreferrer">
-        <Icon name="mdi:open-in-new" /> Ver Proyecto
-      </a>
+      {
+        demo && (
+          <a href={demo} class="btn-outline" target="_blank" rel="noopener noreferrer">
+            <Icon name="mdi:open-in-new" /> Ver Proyecto
+          </a>
+        )
+      }
       <a href={github} class="btn-outline" target="_blank" rel="noopener noreferrer">
         <Icon name="mdi:github" /> GitHub
       </a>
