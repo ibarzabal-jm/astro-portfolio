@@ -1,6 +1,22 @@
 export const experiences = {
-  inventa: {
+  mercadoLibre: {
     endDate: new Date(),
+    initDate: new Date("2024-11-04"),
+    company: "Mercado Libre",
+    title: "Software Engineer",
+    location: "Argentina, Buenos Aires",
+    url: "https://www.mercadolibre.com",
+    logo: "mercadolibre",
+    shortDescription:
+      "Iniciando un nuevo desafío en la empresa más grande de latinoaméríca con esperanzas, sueños y desafios.",
+    longDescription: "En construcción 🚧 , estoy escribiendo esto en mi 3er día recién.",
+    responsibilities: [],
+    technologies: ["React.js", "TypeScript", "Internal libraries"],
+    color: "orange",
+    achievements: [],
+  },
+  inventa: {
+    endDate: new Date("2024-09-15"),
     initDate: new Date("2022-02-22"),
     company: "Inventa",
     title: "Frontend Software Engineer",

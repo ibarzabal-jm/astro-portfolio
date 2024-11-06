@@ -15,11 +15,15 @@
   height: 100%;
 
   content: "";
-  background: linear-gradient(to bottom, var(--magenta), var(--blue));
+  background: linear-gradient(to bottom, var(--orange), var(--magenta), var(--blue));
 }
 
 .timeline-item.blue {
   color: var(--blue);
+}
+
+.timeline-item.orange {
+  color: var(--orange);
 }
 
 .timeline-item.magenta {
@@ -60,10 +64,14 @@
 }
 
 .timeline-item:nth-child(1) .timeline-marker {
-  background-color: var(--magenta);
+  background-color: var(--orange);
 }
 
 .timeline-item:nth-child(2) .timeline-marker {
+  background-color: var(--magenta);
+}
+
+.timeline-item:nth-child(3) .timeline-marker {
   background-color: var(--blue);
 }
 
