@@ -16,7 +16,7 @@ const JOBS = Object.entries(experiences).map(([key, job]) => ({
   ...job,
   detailLink: `/experiencia/${key}`,
   initDate: formatDate(job.initDate),
-  endDate: formatDate(job.endDate),
+  endDate: job.endDate === "now" ? "now" : formatDate(job.endDate as Date),
 }));
 ---
 
@@ -47,7 +47,15 @@ const JOBS = Object.entries(experiences).map(([key, job]) => ({
             </p>
             <p transition:name={`period-${job.company}`}>
               <Icon name="mdi:calendar" />
-              {job.initDate} - {job.endDate}
+              {job.initDate} -{" "}
+              <span id="end-date">
+                {job.endDate === "now"
+                  ? new Date().toLocaleDateString(currentLocale, {
+                      month: "short",
+                      year: "numeric",
+                    })
+                  : job.endDate}
+              </span>
             </p>
           </div>
 

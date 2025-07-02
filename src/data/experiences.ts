@@ -1,6 +1,6 @@
 export const experiences = {
   mercadoLibre: {
-    endDate: new Date(),
+    endDate: "now",
     initDate: new Date("2024-11-04"),
     company: "Mercado Libre",
     title: "Software Engineer",
