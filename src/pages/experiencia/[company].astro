@@ -23,7 +23,8 @@ const { company } = Astro.params;
 const experienceData = experiences[company as keyof typeof experiences];
 
 const initDate = formatDate(experienceData.initDate);
-const endDate = formatDate(experienceData.endDate);
+const endDate =
+  experienceData.endDate === "now" ? "now" : formatDate(experienceData.endDate as Date);
 
 const experience = {
   ...experienceData,
@@ -56,7 +57,10 @@ const experience = {
         </p>
         <p class="period" transition:name={`period-${experience.company}`}>
           <Icon name="mdi:calendar" />
-          {experience.initDate} - {experience.endDate}
+          {experience.initDate} -{" "}
+          <span id="end-date">
+            {experience.endDate === "now" ? "Actualidad" : experience.endDate}
+          </span>
         </p>
       </div>
       <div class="experience-content">
