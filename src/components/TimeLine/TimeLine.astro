@@ -47,15 +47,13 @@ const JOBS = Object.entries(experiences).map(([key, job]) => ({
             </p>
             <p transition:name={`period-${job.company}`}>
               <Icon name="mdi:calendar" />
-              {job.initDate} -{" "}
-              <span id="end-date">
-                {job.endDate === "now"
-                  ? new Date().toLocaleDateString(currentLocale, {
-                      month: "short",
-                      year: "numeric",
-                    })
-                  : job.endDate}
-              </span>
+              {job.initDate} -
+              {job.endDate === "now"
+                ? new Date().toLocaleDateString(currentLocale, {
+                    month: "short",
+                    year: "numeric",
+                  })
+                : job.endDate}
             </p>
           </div>
 

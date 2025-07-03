@@ -6,8 +6,10 @@ form.addEventListener("submit", async (e) => {
   e.preventDefault();
   const formData = new FormData(form);
 
+  const fetchUrl = "https://api.web3forms.com/submit";
+
   try {
-    const response = await fetch(form.action, {
+    const response = await fetch(fetchUrl, {
       method: "POST",
       body: formData,
     });

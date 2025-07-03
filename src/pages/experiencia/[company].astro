@@ -57,10 +57,7 @@ const experience = {
         </p>
         <p class="period" transition:name={`period-${experience.company}`}>
           <Icon name="mdi:calendar" />
-          {experience.initDate} -{" "}
-          <span id="end-date">
-            {experience.endDate === "now" ? "Actualidad" : experience.endDate}
-          </span>
+          {experience.initDate} - {experience.endDate === "now" ? "Actualidad" : experience.endDate}
         </p>
       </div>
       <div class="experience-content">
