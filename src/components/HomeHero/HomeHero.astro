@@ -1,6 +1,14 @@
 ---
 import { Icon } from "astro-icon/components";
 import "./HomeHero.css";
+
+const startDate = new Date(2021, 3, 1);
+const today = new Date();
+let years = today.getFullYear() - startDate.getFullYear();
+const hasNotReachedAnniversary =
+  today.getMonth() < startDate.getMonth() ||
+  (today.getMonth() === startDate.getMonth() && today.getDate() < startDate.getDate());
+if (hasNotReachedAnniversary) years--;
 ---
 
 <div class="home-hero">
@@ -11,7 +19,7 @@ import "./HomeHero.css";
   <div class="hero-content">
     <h1>Hola, soy Juanma <span class="wave">👋</span></h1>
     <p class="hero-description">
-      Soy un desarrollador web con <strong> más de 3 años de experiencia</strong> con React y Nextjs.
+      Soy un desarrollador web con <strong> más de {years} años de experiencia</strong> con React y Nextjs.
       Me gusta crear paginas web, con muchas funcionalidades y con bonitas interfaces.
     </p>
     <div class="location-availability">
