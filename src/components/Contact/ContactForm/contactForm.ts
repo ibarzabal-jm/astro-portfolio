@@ -1,6 +1,13 @@
 import { showToast } from "@src/utils/toast";
 
-const form = document.getElementById("contact-form") as HTMLFormElement;
+const form = document.getElementById("contact-form") as HTMLFormElement | null;
+
+if (!form) {
+  throw new Error("Contact form not found");
+}
+
+const successMessage = form.dataset.successMessage ?? "Message sent successfully";
+const errorMessage = form.dataset.errorMessage ?? "Error sending form";
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -15,7 +22,7 @@ form.addEventListener("submit", async (e) => {
     });
 
     if (response.ok) {
-      showToast("¡Mensaje enviado con éxito!");
+      showToast(successMessage);
       form.reset();
 
       const confetti = (await import("canvas-confetti")).default;
@@ -26,13 +33,10 @@ form.addEventListener("submit", async (e) => {
         origin: { y: 0.6 },
       });
     } else {
-      throw new Error("Error en el envío del formulario");
+      throw new Error("Error submitting form");
     }
   } catch (error) {
     console.error("Error:", error);
-    showToast(
-      "Hubo un error al enviar el mensaje. Por favor, intenta de nuevo o ponte en contacto conmigo por otro medio.",
-      "error"
-    );
+    showToast(errorMessage, "error");
   }
 });

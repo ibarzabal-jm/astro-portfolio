@@ -1,8 +1,14 @@
 ---
 import "./Hamburger.css";
+
+interface Props {
+  menuLabel: string;
+}
+
+const { menuLabel } = Astro.props;
 ---
 
-<button class="hamburger" aria-label="Menu">
+<button class="hamburger" aria-label={menuLabel}>
   <span class="line"></span>
   <span class="line"></span>
   <span class="line"></span>

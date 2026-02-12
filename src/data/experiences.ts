@@ -10,10 +10,16 @@ export const experiences = {
     shortDescription:
       "Iniciando un nuevo desafío en la empresa más grande de latinoaméríca con esperanzas, sueños y desafios.",
     longDescription: "En construcción 🚧 , estoy escribiendo esto en mi 3er día recién.",
-    responsibilities: ["Desarrollador y mantenimiento del CRM para +25k de representantes en el area de CX.", "Colaborador en el diseño, desarrolo y ejecucion del Admin para la configuración de dicho CRM y orquetación de los Microfrontends participantes"],
+    responsibilities: [
+      "Desarrollador y mantenimiento del CRM para +25k de representantes en el area de CX.",
+      "Colaborador en el diseño, desarrolo y ejecucion del Admin para la configuración de dicho CRM y orquetación de los Microfrontends participantes",
+    ],
     technologies: ["React.js", "TypeScript", "Internal libraries"],
     color: "orange",
-    achievements: ["Responsable de ejecucion de main features para el Admin del CRM", "Responsable de la ejecución del sistema de Search del mismo CRM"],
+    achievements: [
+      "Responsable de ejecucion de main features para el Admin del CRM",
+      "Responsable de la ejecución del sistema de Search del mismo CRM",
+    ],
   },
   inventa: {
     endDate: new Date("2024-09-15"),

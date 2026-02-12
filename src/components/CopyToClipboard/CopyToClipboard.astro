@@ -1,15 +1,25 @@
 ---
 import { Icon } from "astro-icon/components";
+import type { Locale } from "@src/i18n/translations";
+import { getI18n } from "@src/i18n/utils";
 import "./CopyToClipboard.css";
 
 interface Props {
   value: string;
+  locale: Locale;
 }
 
-const { value } = Astro.props;
+const { value, locale } = Astro.props;
+const { t } = getI18n(locale);
 ---
 
-<button class="copy-button" data-value={value} aria-label="Copiar al portapapeles">
+<button
+  class="copy-button"
+  data-value={value}
+  data-success-message={t.clipboard.success}
+  data-error-message={t.clipboard.error}
+  aria-label={t.clipboard.ariaLabel}
+>
   <span class="copy-icon">
     <Icon name="mdi:clipboard-text-multiple-outline" />
   </span>

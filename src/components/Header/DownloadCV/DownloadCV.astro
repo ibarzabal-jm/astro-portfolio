@@ -1,4 +1,12 @@
-<button class="downloadCV-button"> Descargar CV </button>
+---
+interface Props {
+  label: string;
+}
+
+const { label } = Astro.props;
+---
+
+<button class="downloadCV-button"> {label} </button>
 
 <style>
   button {

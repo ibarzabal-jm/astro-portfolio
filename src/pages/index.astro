@@ -7,30 +7,34 @@ import SectionHeader from "../components/SectionHeader.astro";
 import Contact from "../components/Contact/Contact.astro";
 import Projects from "../components/Projects/Projects.astro";
 import ContactLink from "../components/ContactLink/ContactLink.astro";
+import { getI18n, getLocaleFromRequest } from "@src/i18n/utils";
+
+const locale = getLocaleFromRequest(Astro.request, Astro.url);
+const { t } = getI18n(locale);
 ---
 
-<Layout title="Juanma Ibarzabal | Portfolio">
+<Layout title={t.meta.homeTitle}>
   <main>
     <Container id="home">
-      <HomeHero />
+      <HomeHero locale={locale} />
     </Container>
 
     <Container id="experiences">
-      <SectionHeader title="Experiencia" icon="mdi:briefcase-variant-outline" />
-      <TimeLine />
+      <SectionHeader title={t.sections.experiences} icon="mdi:briefcase-variant-outline" />
+      <TimeLine locale={locale} />
       <div class="contact-link-container">
-        <ContactLink />
+        <ContactLink locale={locale} />
       </div>
     </Container>
 
     <Container id="projects">
-      <SectionHeader title="Proyectos" icon="mdi:rocket-launch-outline" />
-      <Projects />
+      <SectionHeader title={t.sections.projects} icon="mdi:rocket-launch-outline" />
+      <Projects locale={locale} />
     </Container>
 
     <Container id="contact">
-      <SectionHeader title="Contacto" />
-      <Contact />
+      <SectionHeader title={t.sections.contact} />
+      <Contact locale={locale} />
     </Container>
   </main>
 </Layout>

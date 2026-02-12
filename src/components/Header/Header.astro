@@ -3,19 +3,38 @@ import ToggleTheme from "./ToggleTheme/ToggleTheme.astro";
 import DownloadCV from "./DownloadCV/DownloadCV.astro";
 import Hamburger from "./Hamburger/Hamburger.astro";
 import Sidebar from "./Sidebar/Sidebar.astro";
+import LanguageSwitcher from "./LanguageSwitcher/LanguageSwitcher.astro";
+import type { Locale } from "@src/i18n/translations";
+import { localizeHref } from "@src/i18n/utils";
 import "./Header.css";
 
+interface Props {
+  locale: Locale;
+  labels: {
+    home: string;
+    experiences: string;
+    projects: string;
+    contact: string;
+    downloadCv: string;
+    language: string;
+    menu: string;
+    toggleTheme: string;
+  };
+}
+
+const { locale, labels } = Astro.props;
+
 const navItems = [
-  { href: "/#home", label: "Inicio" },
-  { href: "/#experiences", label: "Experiencia" },
-  { href: "/#projects", label: "Proyectos" },
-  { href: "/#contact", label: "Contacto" },
+  { href: localizeHref("/#home", locale), label: labels.home },
+  { href: localizeHref("/#experiences", locale), label: labels.experiences },
+  { href: localizeHref("/#projects", locale), label: labels.projects },
+  { href: localizeHref("/#contact", locale), label: labels.contact },
 ];
 ---
 
 <header>
   <div class="header-menu">
-    <a href="/#home" class="nav-item logo"> Juanma Ibarzabal </a>
+    <a href={localizeHref("/#home", locale)} class="nav-item logo"> Juanma Ibarzabal </a>
 
     <div class="desktop-menu">
       <nav>
@@ -28,14 +47,21 @@ const navItems = [
         }
       </nav>
       <hr />
-      <ToggleTheme />
-      <DownloadCV />
+      <LanguageSwitcher locale={locale} label={labels.language} />
+      <ToggleTheme label={labels.toggleTheme} />
+      <DownloadCV label={labels.downloadCv} />
     </div>
 
-    <Hamburger />
+    <Hamburger menuLabel={labels.menu} />
   </div>
 
-  <Sidebar navItems={navItems} />
+  <Sidebar
+    navItems={navItems}
+    locale={locale}
+    downloadCvLabel={labels.downloadCv}
+    languageLabel={labels.language}
+    toggleThemeLabel={labels.toggleTheme}
+  />
 </header>
 
 <script>

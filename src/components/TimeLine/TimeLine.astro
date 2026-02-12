@@ -2,11 +2,18 @@
 import { Icon } from "astro-icon/components";
 import "./TimeLine.css";
 import { experiences } from "@src/data/experiences";
+import type { Locale } from "@src/i18n/translations";
+import { getI18n, localizeHref } from "@src/i18n/utils";
 
-const currentLocale = Astro.request.headers.get("accept-language")?.split(",")[0] || "es-AR";
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const { t } = getI18n(locale);
 
 const formatDate = (date: Date) => {
-  return date.toLocaleDateString(currentLocale, {
+  return date.toLocaleDateString(locale, {
     month: "short",
     year: "numeric",
   });
@@ -14,7 +21,7 @@ const formatDate = (date: Date) => {
 
 const JOBS = Object.entries(experiences).map(([key, job]) => ({
   ...job,
-  detailLink: `/experiencia/${key}`,
+  detailLink: localizeHref(`/experiencia/${key}`, locale),
   initDate: formatDate(job.initDate),
   endDate: job.endDate === "now" ? "now" : formatDate(job.endDate as Date),
 }));
@@ -31,12 +38,8 @@ const JOBS = Object.entries(experiences).map(([key, job]) => ({
               <Icon name={job.logo} class="company-logo" />
             </div>
             <div>
-              <h3 class="timeline-title" transition:name={`title-${job.title}`}>
-                {job.title}
-              </h3>
-              <h4 class="timeline-company" transition:name={`company-${job.company}`}>
-                {job.company}
-              </h4>
+              <h3 class="timeline-title" transition:name={`title-${job.title}`}>{job.title}</h3>
+              <h4 class="timeline-company" transition:name={`company-${job.company}`}>{job.company}</h4>
             </div>
           </div>
 
@@ -48,19 +51,14 @@ const JOBS = Object.entries(experiences).map(([key, job]) => ({
             <p transition:name={`period-${job.company}`}>
               <Icon name="mdi:calendar" />
               {job.initDate} -
-              {job.endDate === "now"
-                ? new Date().toLocaleDateString(currentLocale, {
-                    month: "short",
-                    year: "numeric",
-                  })
-                : job.endDate}
+              {job.endDate === "now" ? new Date().toLocaleDateString(locale, { month: "short", year: "numeric" }) : job.endDate}
             </p>
           </div>
 
           <div class="timeline-body">
             <p class="timeline-description">{job.shortDescription}</p>
             <a href={job.detailLink} class="timeline-know-more">
-              Saber más <Icon name="mdi:arrow-right" />
+              {t.timeline.knowMore} <Icon name="mdi:arrow-right" />
             </a>
           </div>
         </div>

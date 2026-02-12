@@ -2,7 +2,16 @@
 import { Icon } from "astro-icon/components";
 import ContactCard from "../ContactCard.astro";
 import CopyToClipboard from "../../CopyToClipboard/CopyToClipboard.astro";
+import type { Locale } from "@src/i18n/translations";
+import { getI18n } from "@src/i18n/utils";
 import "./ContactInfo.css";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const { t } = getI18n(locale);
 
 const contactInfo = [
   {
@@ -13,7 +22,7 @@ const contactInfo = [
   {
     icon: "mdi:whatsapp",
     value: "+54 9 11 3785-4477",
-    href: "https://wa.me/5491137854477?text=Hola%20Juanma%2C%20vi%20tu%20portfolio%20y%20me%20gustar%C3%ADa%20contactarte.",
+    href: `https://wa.me/5491137854477?text=${encodeURIComponent(t.contact.whatsappText)}`,
   },
   {
     icon: "mdi:linkedin",
@@ -23,7 +32,7 @@ const contactInfo = [
 ];
 ---
 
-<ContactCard title="Información de contacto">
+<ContactCard title={t.contact.infoTitle}>
   <ul class="contact-list">
     {
       contactInfo.map((item) => (
@@ -32,7 +41,7 @@ const contactInfo = [
             <Icon name={item.icon} />
             {item.value}
           </a>
-          <CopyToClipboard value={item.value} />
+          <CopyToClipboard value={item.value} locale={locale} />
         </li>
       ))
     }

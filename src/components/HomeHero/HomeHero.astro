@@ -1,6 +1,15 @@
 ---
 import { Icon } from "astro-icon/components";
+import type { Locale } from "@src/i18n/translations";
+import { getI18n } from "@src/i18n/utils";
 import "./HomeHero.css";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const { t } = getI18n(locale);
 
 const startDate = new Date(2021, 3, 1);
 const today = new Date();
@@ -9,6 +18,8 @@ const hasNotReachedAnniversary =
   today.getMonth() < startDate.getMonth() ||
   (today.getMonth() === startDate.getMonth() && today.getDate() < startDate.getDate());
 if (hasNotReachedAnniversary) years--;
+
+const heroDescription = t.home.description.replace("{years}", String(years));
 ---
 
 <div class="home-hero">
@@ -17,41 +28,28 @@ if (hasNotReachedAnniversary) years--;
     <div class="image-background"></div>
   </div>
   <div class="hero-content">
-    <h1>Hola, soy Juanma <span class="wave">👋</span></h1>
-    <p class="hero-description">
-      Soy un desarrollador web con <strong> más de {years} años de experiencia</strong> con React y Nextjs.
-      Me gusta crear paginas web, con muchas funcionalidades y con bonitas interfaces.
-    </p>
+    <h1>{t.home.greeting} <span class="wave">👋</span></h1>
+    <p class="hero-description">{heroDescription}</p>
     <div class="location-availability">
       <p class="location">
         <Icon name="mdi:map-marker-outline" />
-        Buenos Aires, Argentina
+        {t.home.location}
       </p>
       <p class="availability">
         <span class="availability-dot-container">
           <span class="availability-dot"></span>
         </span>
-        Disponible para nuevos desafíos
+        {t.home.availability}
       </p>
     </div>
     <div class="social-links">
-      <a
-        href="https://github.com/ibarzabal-jm"
-        aria-label="GitHub"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <a href="https://github.com/ibarzabal-jm" aria-label={t.accessibility.github} target="_blank" rel="noopener noreferrer">
         <Icon name="mdi:github" />
       </a>
-      <a
-        href="https://www.linkedin.com/in/juanma-ibarzabal/"
-        aria-label="LinkedIn"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <a href="https://www.linkedin.com/in/juanma-ibarzabal/" aria-label={t.accessibility.linkedin} target="_blank" rel="noopener noreferrer">
         <Icon name="mdi:linkedin" />
       </a>
-      <a href="mailto:ibarzabalsallesjm@gmail.com" aria-label="Email">
+      <a href="mailto:ibarzabalsallesjm@gmail.com" aria-label={t.accessibility.email}>
         <Icon name="mdi:email" />
       </a>
     </div>

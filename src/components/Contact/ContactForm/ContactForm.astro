@@ -1,24 +1,33 @@
 ---
 import ContactCard from "../ContactCard.astro";
+import type { Locale } from "@src/i18n/translations";
+import { getI18n } from "@src/i18n/utils";
 import "./ContactForm.css";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const { t } = getI18n(locale);
 ---
 
-<ContactCard title="Envíame un email">
-  <form id="contact-form">
+<ContactCard title={t.contact.formTitle}>
+  <form id="contact-form" data-success-message={t.contact.success} data-error-message={t.contact.error}>
     <input type="hidden" name="access_key" value="90248a24-d2ee-44cf-a4fb-a341a4f3908a" />
     <div class="form-group">
-      <label for="name">Nombre</label>
+      <label for="name">{t.contact.name}</label>
       <input type="text" id="name" name="name" required />
     </div>
     <div class="form-group">
-      <label for="email">Email</label>
+      <label for="email">{t.contact.email}</label>
       <input type="email" id="email" name="email" required />
     </div>
     <div class="form-group">
-      <label for="message">Mensaje</label>
+      <label for="message">{t.contact.message}</label>
       <textarea id="message" name="message" required></textarea>
     </div>
-    <button class="send-button" type="submit">Enviar mensaje</button>
+    <button class="send-button" type="submit">{t.contact.send}</button>
   </form>
 </ContactCard>
 

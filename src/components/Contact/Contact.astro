@@ -1,11 +1,18 @@
 ---
 import ContactInfo from "./ContactInfo/ContactInfo.astro";
 import ContactForm from "./ContactForm/ContactForm.astro";
+import type { Locale } from "@src/i18n/translations";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
 ---
 
 <div class="contact-container">
-  <ContactInfo />
-  <ContactForm />
+  <ContactInfo locale={locale} />
+  <ContactForm locale={locale} />
 </div>
 
 <style>

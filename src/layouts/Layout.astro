@@ -2,22 +2,22 @@
 import Header from "../components/Header/Header.astro";
 import Footer from "../components/Footer/Footer.astro";
 import { ViewTransitions } from "astro:transitions";
+import { getI18n, getLocaleFromRequest } from "@src/i18n/utils";
 
 interface Props {
-  title: string;
+  title?: string;
 }
 
-const { title } = Astro.props;
+const locale = getLocaleFromRequest(Astro.request, Astro.url);
+const { t } = getI18n(locale);
+const { title = t.meta.homeTitle } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang={locale}>
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="description"
-      content="Portfolio de Juanma Ibarzabal Salles, frontend developer. Hecho con Astro."
-    />
+    <meta name="description" content={t.meta.description} />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/piojito.ico" />
     <meta name="generator" content={Astro.generator} />
@@ -26,10 +26,7 @@ const { title } = Astro.props;
     <meta name="google-site-verification" content="KvQ9ce7WJfvphjXaM-hYcoG519ItWyRHD5ae2Gq6JP4" />
 
     <meta property="og:title" content={title} />
-    <meta
-      property="og:description"
-      content="Portfolio de Juanma Ibarzabal Salles, frontend developer. Hecho con Astro."
-    />
+    <meta property="og:description" content={t.meta.description} />
     <meta property="og:image" content="https://www.ibarzabal.ar/portfolio.webp" />
     <meta property="og:url" content="https://www.ibarzabal.ar/" />
     <meta property="og:type" content="website" />
@@ -37,18 +34,28 @@ const { title } = Astro.props;
     <meta name="twitter:site" content="@JuanmaPiojoso" />
     <meta name="twitter:creator" content="@JuanmaPiojoso" />
     <meta name="twitter:title" content={title} />
-    <meta
-      name="twitter:description"
-      content="Portfolio de Juanma Ibarzabal Salles, frontend developer. Hecho con Astro."
-    />
+    <meta name="twitter:description" content={t.meta.description} />
     <meta name="twitter:image" content="https://www.ibarzabal.ar/portfolio.webp" />
 
     <ViewTransitions />
   </head>
   <body>
-    <Header transition:persist />
+    <Header
+      transition:persist
+      locale={locale}
+      labels={{
+        home: t.nav.home,
+        experiences: t.nav.experiences,
+        projects: t.nav.projects,
+        contact: t.nav.contact,
+        downloadCv: t.nav.downloadCv,
+        language: t.language.label,
+        menu: t.accessibility.menu,
+        toggleTheme: t.accessibility.toggleTheme,
+      }}
+    />
     <slot />
-    <Footer />
+    <Footer madeWith={t.footer.madeWith} by={t.footer.by} signatureAriaLabel={t.footer.signatureAriaLabel} />
     <div id="toast-container"></div>
   </body>
 </html>
