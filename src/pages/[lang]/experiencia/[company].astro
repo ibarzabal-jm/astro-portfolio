@@ -1,16 +1,19 @@
 ---
-import Layout from "../../layouts/Layout.astro";
+import Layout from "../../../layouts/Layout.astro";
 import { Icon } from "astro-icon/components";
 import { ViewTransitions } from "astro:transitions";
 import { experiences } from "@src/data/experiences";
 import Container from "@src/components/Container.astro";
-import { getI18n, getLocaleFromRequest } from "@src/i18n/utils";
+import { getI18n } from "@src/i18n/utils";
+import { locales, type Locale } from "@src/i18n/translations";
 
 export function getStaticPaths() {
-  return Object.keys(experiences).map((company) => ({ params: { company } }));
+  return locales.flatMap((lang) =>
+    Object.keys(experiences).map((company) => ({ params: { lang, company } }))
+  );
 }
 
-const locale = getLocaleFromRequest(Astro.request, Astro.url);
+const locale = Astro.params.lang as Locale;
 const { t } = getI18n(locale);
 
 const formatDate = (date: Date) => {
@@ -21,11 +24,11 @@ const formatDate = (date: Date) => {
 };
 
 const { company } = Astro.params;
-
 const experienceData = experiences[company as keyof typeof experiences];
 
 const initDate = formatDate(experienceData.initDate);
-const endDate = experienceData.endDate === "now" ? "now" : formatDate(experienceData.endDate as Date);
+const endDate =
+  experienceData.endDate === "now" ? "now" : formatDate(experienceData.endDate as Date);
 
 const experience = {
   ...experienceData,

@@ -1,13 +1,19 @@
 ---
 import ToggleTheme from "../ToggleTheme/ToggleTheme.astro";
 import DownloadCV from "../DownloadCV/DownloadCV.astro";
+import LanguageSwitcher from "../LanguageSwitcher/LanguageSwitcher.astro";
+import type { Locale } from "@src/i18n/translations";
 import "./Sidebar.css";
 
 interface Props {
   navItems: { href: string; label: string }[];
+  locale: Locale;
+  downloadCvLabel: string;
+  languageLabel: string;
+  toggleThemeLabel: string;
 }
 
-const { navItems } = Astro.props;
+const { navItems, locale, downloadCvLabel, languageLabel, toggleThemeLabel } = Astro.props;
 ---
 
 <div class="sidebar">
@@ -21,7 +27,8 @@ const { navItems } = Astro.props;
     }
   </nav>
   <div class="sidebar-footer">
-    <ToggleTheme />
-    <DownloadCV />
+    <LanguageSwitcher locale={locale} label={languageLabel} />
+    <ToggleTheme label={toggleThemeLabel} />
+    <DownloadCV label={downloadCvLabel} />
   </div>
 </div>

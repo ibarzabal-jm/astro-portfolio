@@ -1,0 +1,49 @@
+---
+import { localizeHref } from "@src/i18n/utils";
+import type { Locale } from "@src/i18n/translations";
+
+interface Props {
+  locale: Locale;
+  label: string;
+}
+
+const { locale, label } = Astro.props;
+const options: { code: Locale; label: string }[] = [
+  { code: "es", label: "ES" },
+  { code: "en", label: "EN" },
+  { code: "pt", label: "PT" },
+];
+---
+
+<div class="language-switcher" aria-label={label}>
+  {
+    options.map((option) => (
+      <a href={localizeHref(Astro.url.pathname + Astro.url.hash, option.code)} class:list={["lang-option", option.code === locale && "active"]}>
+        {option.label}
+      </a>
+    ))
+  }
+</div>
+
+<style>
+  .language-switcher {
+    display: flex;
+    gap: 0.25rem;
+  }
+
+  .lang-option {
+    color: var(--primary-700);
+    text-decoration: none;
+    font-size: 0.75rem;
+    border: 1px solid var(--primary-300);
+    border-radius: 999px;
+    padding: 0.2rem 0.45rem;
+    font-weight: 600;
+  }
+
+  .lang-option.active {
+    color: #fff;
+    border-color: var(--magenta);
+    background: var(--magenta);
+  }
+</style>

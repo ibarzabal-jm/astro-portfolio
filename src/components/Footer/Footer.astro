@@ -1,6 +1,14 @@
 ---
 import { Icon } from "astro-icon/components";
 import "./Footer.css";
+
+interface Props {
+  madeWith: string;
+  by: string;
+  signatureAriaLabel: string;
+}
+
+const { madeWith, by, signatureAriaLabel } = Astro.props;
 ---
 
 <footer>
@@ -11,13 +19,13 @@ import "./Footer.css";
       rel="noopener noreferrer"
       class="made-with-love"
     >
-      Hecho con <Icon name="mdi:heart" /> por @ibarzabal-jm
+      {madeWith} <Icon name="mdi:heart" /> {by} @ibarzabal-jm
     </a>
     <a
       href="https://www.linkedin.com/in/juan-manuel-ibarzabal/"
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="Signature of Juanma Ibarzabal"
+      aria-label={signatureAriaLabel}
       class="signature"
     >
       <Icon name="signature" />

@@ -1,15 +1,20 @@
 ---
-import TimeLine from "../components/TimeLine/TimeLine.astro";
-import Layout from "../layouts/Layout.astro";
-import Container from "../components/Container.astro";
-import HomeHero from "../components/HomeHero/HomeHero.astro";
-import SectionHeader from "../components/SectionHeader.astro";
-import Contact from "../components/Contact/Contact.astro";
-import Projects from "../components/Projects/Projects.astro";
-import ContactLink from "../components/ContactLink/ContactLink.astro";
-import { getI18n, getLocaleFromRequest } from "@src/i18n/utils";
+import TimeLine from "../../components/TimeLine/TimeLine.astro";
+import Layout from "../../layouts/Layout.astro";
+import Container from "../../components/Container.astro";
+import HomeHero from "../../components/HomeHero/HomeHero.astro";
+import SectionHeader from "../../components/SectionHeader.astro";
+import Contact from "../../components/Contact/Contact.astro";
+import Projects from "../../components/Projects/Projects.astro";
+import ContactLink from "../../components/ContactLink/ContactLink.astro";
+import { getI18n } from "@src/i18n/utils";
+import { locales, type Locale } from "@src/i18n/translations";
 
-const locale = getLocaleFromRequest(Astro.request, Astro.url);
+export function getStaticPaths() {
+  return locales.map((lang) => ({ params: { lang } }));
+}
+
+const locale = Astro.params.lang as Locale;
 const { t } = getI18n(locale);
 ---
 

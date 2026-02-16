@@ -1,8 +1,16 @@
 ---
+import type { Locale } from "@src/i18n/translations";
+import { getI18n, localizeHref } from "@src/i18n/utils";
 
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const { t } = getI18n(locale);
 ---
 
-<a href="/#contact" class="contact-link"> ¿Te gustaría ser el siguiente? 😉 </a>
+<a href={localizeHref("/#contact", locale)} class="contact-link"> {t.contact.contactLink} </a>
 
 <style>
   .contact-link {

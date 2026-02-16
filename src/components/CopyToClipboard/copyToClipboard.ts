@@ -1,11 +1,13 @@
 import { showToast } from "../../utils/toast";
 
 function setupCopyToClipboard() {
-  const copyButtons = document.querySelectorAll(".copy-button");
+  const copyButtons = document.querySelectorAll<HTMLButtonElement>(".copy-button");
 
   copyButtons.forEach((button) => {
     button.addEventListener("click", async () => {
       const textToCopy = button.getAttribute("data-value");
+      const successMessage = button.dataset.successMessage ?? "Copied";
+      const errorMessage = button.dataset.errorMessage ?? "Error";
 
       if (textToCopy) {
         try {
@@ -15,14 +17,14 @@ function setupCopyToClipboard() {
 
           button.classList.add("copied");
 
-          showToast("¡Copiado al portapapeles!", "success");
+          showToast(successMessage, "success");
 
           setTimeout(() => {
             button.classList.remove("copied");
           }, 3000);
         } catch (err) {
           console.error("Failed to copy text: ", err);
-          showToast("Error al copiar el texto", "error");
+          showToast(errorMessage, "error");
         }
       }
     });

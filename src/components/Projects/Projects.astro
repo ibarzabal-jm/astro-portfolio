@@ -1,29 +1,25 @@
 ---
 import ProjectCard from "./ProjectCard/ProjectCard.astro";
+import type { Locale } from "@src/i18n/translations";
+import { getI18n } from "@src/i18n/utils";
 import "./Projects.css";
 
-const projects = [
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const { t } = getI18n(locale);
+
+const baseProjects = [
   {
-    title: "Aerolab Challenge",
-    description:
-      "Challenge de la empresa Aerolab para el puesto Frontend Developer, realizado con Nextjs (app router), Typescript, Css Modules.",
     image: "projects/img/aerolab.webp",
     video: "projects/video/aerolab.mp4",
     github: "https://github.com/ibarzabal-jm/aerolab-frontend-dev-coding-challenge",
     demo: "https://juanma-aerolab-challenge.netlify.app",
-    technologies: [
-      "Nextjs",
-      "React",
-      "Css",
-      "Typescript",
-      "React Testing Library",
-      "Jest",
-      "Figma",
-    ],
+    technologies: ["Nextjs", "React", "Css", "Typescript", "React Testing Library", "Jest", "Figma"],
   },
   {
-    title: "Buscaminas",
-    description: "Clasico juego de buscaminas, realizado con React.js, Css y Typescript.",
     image: "projects/img/buscamina.webp",
     video: "projects/video/buscamina.mp4",
     github: "https://github.com/ibarzabal-jm/React-Minesweeper",
@@ -31,18 +27,12 @@ const projects = [
     technologies: ["React", "Css", "Typescript"],
   },
   {
-    title: "NeonGiphy Search",
-    description:
-      "Buscador de gifs con estilo Neon, realizado con Next.js y Typescript. Está inactivo temporalmente por coste de Vercel (me exedí en la cantidad de imagenes)",
     image: "/projects/img/neongiphy.webp",
     video: "/projects/video/neongiphy.mp4",
     github: "https://github.com/ibarzabal-jm/Giphy-Next-App",
     technologies: ["Next.js", "Typescript", "Sass", "Giphy API"],
   },
   {
-    title: "Juanma Pokedex",
-    description:
-      "Desafío 5 de DevOff: Es una Pokedex hecha en React.js utilizando Chakra-UI, haciendo uso de la api pokeapi.co",
     image: "/projects/img/pokedex.webp",
     video: "/projects/video/pokedex.mp4",
     github: "https://github.com/ibarzabal-jm/React-Pokedex-DevOff-Desafio-5",
@@ -50,8 +40,14 @@ const projects = [
     technologies: ["React.js", "Chakra-UI", "JavaScript", "Pokeapi", "React-Router"],
   },
 ];
+
+const projects = baseProjects.map((project, index) => ({
+  ...project,
+  title: t.projects.list[index].title,
+  description: t.projects.list[index].description,
+}));
 ---
 
 <div class="projects-container">
-  {projects.map((project) => <ProjectCard {...project} />)}
+  {projects.map((project) => <ProjectCard {...project} locale={locale} />)}
 </div>
