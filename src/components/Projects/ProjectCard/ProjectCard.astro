@@ -15,13 +15,13 @@ interface Props {
   locale: Locale;
 }
 
-const { title, description, video, github, demo, technologies, locale } = Astro.props as Props;
+const { title, description, image, video, github, demo, technologies, locale } = Astro.props as Props;
 const { t } = getI18n(locale);
 ---
 
 <article class="project-card">
   <div class="project-video-container">
-    <video autoplay muted loop playsinline preload="none" poster={video.replace(".mp4", ".webp")}>
+    <video autoplay muted loop playsinline preload="none" poster={image}>
       <source src={video} type="video/mp4" />
       <track kind="captions" src="" srclang="es" label={t.accessibility.captionsSpanish} />
     </video>

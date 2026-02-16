@@ -1,0 +1,57 @@
+---
+import TimeLine from "../../components/TimeLine/TimeLine.astro";
+import Layout from "../../layouts/Layout.astro";
+import Container from "../../components/Container.astro";
+import HomeHero from "../../components/HomeHero/HomeHero.astro";
+import SectionHeader from "../../components/SectionHeader.astro";
+import Contact from "../../components/Contact/Contact.astro";
+import Projects from "../../components/Projects/Projects.astro";
+import ContactLink from "../../components/ContactLink/ContactLink.astro";
+import { getI18n } from "@src/i18n/utils";
+import { locales, type Locale } from "@src/i18n/translations";
+
+export function getStaticPaths() {
+  return locales.map((lang) => ({ params: { lang } }));
+}
+
+const locale = Astro.params.lang as Locale;
+const { t } = getI18n(locale);
+---
+
+<Layout title={t.meta.homeTitle}>
+  <main>
+    <Container id="home">
+      <HomeHero locale={locale} />
+    </Container>
+
+    <Container id="experiences">
+      <SectionHeader title={t.sections.experiences} icon="mdi:briefcase-variant-outline" />
+      <TimeLine locale={locale} />
+      <div class="contact-link-container">
+        <ContactLink locale={locale} />
+      </div>
+    </Container>
+
+    <Container id="projects">
+      <SectionHeader title={t.sections.projects} icon="mdi:rocket-launch-outline" />
+      <Projects locale={locale} />
+    </Container>
+
+    <Container id="contact">
+      <SectionHeader title={t.sections.contact} />
+      <Contact locale={locale} />
+    </Container>
+  </main>
+</Layout>
+
+<style>
+  main {
+    font-size: 20px;
+    line-height: 1.6;
+  }
+  .contact-link-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+</style>
